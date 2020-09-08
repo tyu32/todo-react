@@ -3,12 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import Demo from './pages/home'
+import Demo from './pages/Category/addCategory'
+
+import {HashRouter, Router, Switch, BrowserRouter} from 'react-router-dom';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Demo />
-  </React.StrictMode>,
+  // <BrowserRouter>
+  //   <Switch>
+  //     <Router path = "/" component={App}
+  //   </Switch>
+  // </BrowserRouter>
+  //<React.StrictMode>
+    <App />,
+  //</React.StrictMode>,
   document.getElementById('root'),
 );
 

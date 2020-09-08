@@ -1,97 +1,59 @@
 import React from 'react';
-import '../App.css';
-// import { Form, Input, Button, Checkbox } from 'antd';
-// import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
+import { Redirect, useHistory, withRouter } from 'react-router-dom';
+import { render } from 'react-dom';
+import { addCategory } from '../api';
 
-import { Form, Input, Button, Checkbox } from 'antd';
+class Home extends React.Component {
+    state = { redirect: null }
+    addCategory() {
+        this.setState({redirect: "/addCategory"})
+    }
+    render() {
+        
+        if (this.state.redirect) {
+            console.log("redirect");
+            return <Redirect to={this.state.redirect} />
+        }
+        return (
+            <div>
+                <Button type="primary" onClick={addCategory}>Category</Button>
+            </div >
+        )
+    }
+}
+// const onClickAdd = () => {
+//     <Redirect to='/addCategory' />
+// }
+// function onClick() {
+//     console.log("hhh");
+//     render() {
+//          <Redirect to='/addCategory' />
+//     } 
+// }
+// function Home () {
 
-const layout = {
-  labelCol: {
-    span: 8,
-  },
-  wrapperCol: {
-    span: 8,
-  },
-};
-const tailLayout = {
-  wrapperCol: {
-    offset: 8,
-    span: 16,
-  },
-};
+//     <div>
+//     <Button type="primary" >Category</Button>
+//     </div >
+//     return (null)
+// };
 
-const Demo = () => {
-  const onFinish = values => {
-    console.log('Success:', values);
-    fetch("http://localhost:8080/Category", {
-      method: "POST",
-      body: {"title": values},
-      headers: {
-        'content-type': 'application/json'
-      }
-    })
-    .then((res) => {
-      return res.json();
-    })
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((err) => {
-      console.log(err.message || "wrong when add category");
-    })
-  };
 
-  const onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
-  };
+// const Home = () => {
 
-  return (
-    <Form
-      {...layout}
-      name="basic"
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-    >
-      <Form.Item
-        label="Title"
-        name="title"
-        // rules={[
-        //   {
-        //     required: true,
-        //     message: 'Please input your username!',
-        //   },
-        // ]}
-      >
-        <Input />
-      </Form.Item>
+//     let history = useHistory();
 
-      {/* <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your password!',
-          },
-        ]}
-      >
-        <Input.Password />
-      </Form.Item> */}
+//     const routeChange = () => {
+//         let path = "/Category";
+//         history.push("/Category");
+//     }
 
-      {/* <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item> */}
+//     return (
+//         <div className="app flex-row align-items-center">
+//             <Button type="primary" onClick={routeChange}>Category</Button>
+//         </div>
+//     );
+// }
 
-      <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
-  );
-};
-
-export default Demo;
+export default Home;
