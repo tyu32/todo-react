@@ -49,3 +49,14 @@ export const addTask = (data) => {
         }
     }) 
 };
+
+export const updateTask = (data) => {
+    console.log(data);
+    axios({
+        method: 'put',
+        url: 'Task',
+        data: {
+            "id": data.TaskId
+        }
+    }) 
+};
