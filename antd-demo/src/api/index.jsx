@@ -28,17 +28,24 @@ export const deleteCategory = (data) => {
 };
 
 export const deleteTask = (data) => {
-    console.log(data);
-    // ajax.delete('/Task', {
-    //     data
-    // })
     axios({
         method: 'delete',
         url: 'Task',
         data: {
             "id": data.TaskId
         }
-    })
-    
-    
-}
+    }) 
+};
+
+export const addTask = (data) => {
+    console.log(data);
+    axios({
+        method: 'post',
+        url: 'Task',
+        data: {
+            "title": data.title,
+            "note": data.note,
+            "cId": data.cId
+        }
+    }) 
+};

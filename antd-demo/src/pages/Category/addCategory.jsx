@@ -5,7 +5,7 @@ import '../../App.css';
 
 import { Form, Input, Button, Checkbox } from 'antd';
 
-import { addCategory, deleteCategory, deleteTask } from '../../api';
+import { addCategory, deleteCategory, deleteTask, addTask } from '../../api';
 
 
 const layout = {
@@ -96,6 +96,39 @@ const Demo = () => {
           <Form.Item {...tailLayout}>
             <Button type="primary" htmlType="submit">
               Delete Task
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
+
+      <div className={"AddTask"}>
+        <Form
+          {...layout}
+          name="basic"
+          onFinish={addTask}
+          onFinishFailed={onFinishFailed}
+        >
+          <Form.Item
+            label="Task Title"
+            name="title"
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Task Note"
+            name="note"
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Category Id"
+            name="cId"
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item {...tailLayout}>
+            <Button type="primary" htmlType="submit">
+              Add Task
             </Button>
           </Form.Item>
         </Form>
