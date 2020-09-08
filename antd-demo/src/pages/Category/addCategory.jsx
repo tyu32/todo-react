@@ -102,8 +102,6 @@ const Demo = () => {
       </div>
       </div>
     </div>
-
-
   );
 };
 

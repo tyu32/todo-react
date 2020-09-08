@@ -29,8 +29,15 @@ export const deleteCategory = (data) => {
 
 export const deleteTask = (data) => {
     console.log(data);
-    ajax.delete('/Task', {
-        data
+    // ajax.delete('/Task', {
+    //     data
+    // })
+    axios({
+        method: 'delete',
+        url: 'Task',
+        data: {
+            "id": data.TaskId
+        }
     })
     
     
