@@ -5,7 +5,7 @@ import '../../App.css';
 
 import { Form, Input, Button, Checkbox } from 'antd';
 
-import { addCategory } from '../../api';
+import { addCategory, deleteCategory, deleteTask } from '../../api';
 
 
 const layout = {
@@ -25,26 +25,7 @@ const tailLayout = {
 
 const Demo = () => {
   const onFinish = values => {
-    values.preventDefault();
-    addCategory(values)
-    // console.log('Success:', values);
-    // fetch("/Category", {
-    //   method: "POST",
-    //   body: {"title": values},
-    //   headers: {
-    //     'content-type': 'application/json'
-    //   }
-    // })
-    // .then((res) => {
-    //   console.log(res);
-    //   return res.json();
-    // })
-    // .then((result) => {
-    //   console.log(result);
-    // })
-    // .catch((err) => {
-    //   console.log(err.message || "wrong when add category");
-    // })
+    console.log(values);
   };
 
   const onFinishFailed = errorInfo => {
@@ -52,51 +33,77 @@ const Demo = () => {
   };
 
   return (
-    <Form
-      {...layout}
-      name="basic"
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-    >
-      <Form.Item
-        label="Title"
-        name="title"
-        // rules={[
-        //   {
-        //     required: true,
-        //     message: 'Please input your username!',
-        //   },
-        // ]}
-      >
-        <Input />
-      </Form.Item>
-
-      {/* <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your password!',
-          },
-        ]}
-      >
-        <Input.Password />
-      </Form.Item> */}
-
-      {/* <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item> */}
-
-      <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
-          Submit
+    <div className={"Category"}>
+      <div className={"addCategory"}>
+        <Form
+          {...layout}
+          name="basic"
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={addCategory}
+          onFinishFailed={onFinishFailed}
+        >
+          <Form.Item
+            label="Title"
+            name="title"
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item {...tailLayout}>
+            <Button type="primary" htmlType="submit">
+              Add Category
         </Button>
-      </Form.Item>
-    </Form>
+          </Form.Item>
+        </Form>
+      </div>
+
+      <div className={"deleteCategory"}>
+        <Form
+          {...layout}
+          name="basic"
+          onFinish={deleteCategory}
+          onFinishFailed={onFinishFailed}
+        >
+          <Form.Item
+            label="Id"
+            name="id"
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item {...tailLayout}>
+            <Button type="primary" htmlType="submit">
+              Delete Category
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
+
+      <div>
+      <div className={"deleteCategory"}>
+        <Form
+          {...layout}
+          name="basic"
+          onFinish={deleteTask}
+          onFinishFailed={onFinishFailed}
+        >
+          <Form.Item
+            label="TaskId"
+            name="TaskId"
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item {...tailLayout}>
+            <Button type="primary" htmlType="submit">
+              Delete Task
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
+      </div>
+    </div>
+
+
   );
 };
 
